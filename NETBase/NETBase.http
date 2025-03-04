@@ -1,0 +1,6 @@
+@NETBase_HostAddress = http://localhost:5172
+
+GET {{NETBase_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
