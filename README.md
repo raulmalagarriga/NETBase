@@ -1,4 +1,4 @@
-# MernTypescriptBase
+# NETBase
 
 Template for a ASP Net core API, EF Core and PostgreSQL with a simple implementation of Unit of Work design pattern | Code first approach
 
