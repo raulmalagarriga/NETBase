@@ -13,15 +13,15 @@ namespace NETBase.Repositories
             this.dBContext = dBContext;
         }
 
-        public void CreateUser(User data)
+        public async void CreateUser(User data)
         {
             dBContext.User.Add(data);
-            dBContext.SaveChanges();
+            await dBContext.SaveChangesAsync();
         }
 
-        public void DeleteUser(string code)
+        public async void DeleteUser(string code)
         {
-            User userToDelete = dBContext.User.FirstOrDefault(u => u.Code == code);
+            User userToDelete = await dBContext.User.FirstOrDefaultAsync(u => u.Code == code);
             if (userToDelete != null) dBContext.Remove(userToDelete);
             dBContext.SaveChanges();
         }
@@ -36,9 +36,9 @@ namespace NETBase.Repositories
             return await dBContext.User.ToListAsync();
         }
 
-        public void UpdateUser(User data)
+        public async void UpdateUser(User data)
         {
-            User userToUpdate = dBContext.User.FirstOrDefault(u => u.Code == data.Code);
+            User userToUpdate = await dBContext.User.FirstOrDefaultAsync(u => u.Code == data.Code);
             if (userToUpdate != null) userToUpdate = data;
             dBContext.SaveChanges();
         }
