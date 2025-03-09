@@ -9,7 +9,7 @@ namespace NETBase.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
         [StringLength(50)]
-        public string Code { get; set; }
+        public string Code { get; set; } = Guid.NewGuid().ToString();
         [StringLength(70)]
         public string Username { get; set; }
         [StringLength(50)]

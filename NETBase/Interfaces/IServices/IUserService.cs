@@ -5,10 +5,10 @@ namespace NETBase.Interfaces.IServices
 {
     public interface IUserService
     {
-        Task<IActionResult> GetUsers();
-        Task<IActionResult> GetUserByCode(string code);
-        Task<IActionResult> CreateUser(UserDTO data);
-        Task<IActionResult> UpdateUser(UserDTO data);
-        Task<IActionResult> DeleteUser(string code);
+        Task<List<UserDTO>> GetUsers();
+        Task<UserDTO> GetUserByCode(string code);
+        Task<bool> CreateUser(CreateUserDTO data);
+        void UpdateUser(UpdateUserDTO data);
+        Task<bool> DeleteUser(string code);
     }
 }
