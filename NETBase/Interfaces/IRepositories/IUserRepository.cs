@@ -6,9 +6,9 @@ namespace NETBase.Interfaces.IRepositories
     {
         Task<List<User>> GetUsers();
         Task<User> GetUserByCode(string code);
-        void CreateUser(User data);
-        void UpdateUser(User data);
-        void DeleteUser(string code);
+        Task<bool> CreateUser(User data);
+        Task<bool> UpdateUser(User data);
+        Task<bool> DeleteUser(string code);
         Task<User> GetUserByUsername(string username);
         Task<User> GetUserByEmail(string email);
     }

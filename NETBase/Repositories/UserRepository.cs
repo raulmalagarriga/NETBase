@@ -13,17 +13,20 @@ namespace NETBase.Repositories
             this.dBContext = dBContext;
         }
 
-        public async void CreateUser(User data)
+        public async Task<bool> CreateUser(User data)
         {
             dBContext.User.Add(data);
             await dBContext.SaveChangesAsync();
+            return true;
         }
 
-        public async void DeleteUser(string code)
+        public async Task<bool> DeleteUser(string code)
         {
             User userToDelete = await dBContext.User.FirstOrDefaultAsync(u => u.Code == code);
-            if (userToDelete != null) dBContext.Remove(userToDelete);
-            dBContext.SaveChanges();
+            if (userToDelete == null) return false;
+            dBContext.Remove(userToDelete);
+            await dBContext.SaveChangesAsync();
+            return true;
         }
 
         public async Task<User> GetUserByCode(string code)
@@ -36,11 +39,13 @@ namespace NETBase.Repositories
             return await dBContext.User.ToListAsync();
         }
 
-        public async void UpdateUser(User data)
+        public async Task<bool> UpdateUser(User data)
         {
             User userToUpdate = await dBContext.User.FirstOrDefaultAsync(u => u.Code == data.Code);
-            if (userToUpdate != null) userToUpdate = data;
-            dBContext.SaveChanges();
+            if (userToUpdate == null) return false;
+            userToUpdate = data;
+            await dBContext.SaveChangesAsync();
+            return true;
         }
 
         public async Task<User> GetUserByUsername(string username)
