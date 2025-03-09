@@ -2,7 +2,6 @@
 using NETBase.Data;
 using NETBase.Interfaces.IRepositories;
 using NETBase.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace NETBase.Repositories
 {
