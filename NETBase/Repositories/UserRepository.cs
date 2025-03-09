@@ -42,5 +42,14 @@ namespace NETBase.Repositories
             if (userToUpdate != null) userToUpdate = data;
             dBContext.SaveChanges();
         }
+
+        public async Task<User> GetUserByUsername(string username)
+        {
+            return await dBContext.User.FirstOrDefaultAsync(u => u.Username == username);
+        }
+        public async Task<User> GetUserByEmail(string email)
+        {
+            return await dBContext.User.FirstOrDefaultAsync(u => u.Email == email);
+        }
     }
 }
