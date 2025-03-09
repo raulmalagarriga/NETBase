@@ -8,5 +8,6 @@ namespace NETBase.Interfaces.IRepositories
         Task<User> GetUserByCode(string code);
         void CreateUser(User data);
         void UpdateUser(User data);
+        void DeleteUser(string code);
     }
 }

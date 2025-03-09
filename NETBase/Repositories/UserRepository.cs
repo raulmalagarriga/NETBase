@@ -2,6 +2,7 @@
 using NETBase.Data;
 using NETBase.Interfaces.IRepositories;
 using NETBase.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace NETBase.Repositories
 {
@@ -19,6 +20,13 @@ namespace NETBase.Repositories
             dBContext.SaveChanges();
         }
 
+        public void DeleteUser(string code)
+        {
+            User userToDelete = dBContext.User.FirstOrDefault(u => u.Code == code);
+            if (userToDelete != null) dBContext.Remove(userToDelete);
+            dBContext.SaveChanges();
+        }
+
         public async Task<User> GetUserByCode(string code)
         {
             return await dBContext.User.FirstOrDefaultAsync(u => u.Code == code);
@@ -31,7 +39,7 @@ namespace NETBase.Repositories
 
         public void UpdateUser(User data)
         {
-            User userToUpdate = dBContext.User.FirstOrDefault();
+            User userToUpdate = dBContext.User.FirstOrDefault(u => u.Code == data.Code);
             if (userToUpdate != null) userToUpdate = data;
             dBContext.SaveChanges();
         }
