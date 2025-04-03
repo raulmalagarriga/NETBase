@@ -1,4 +1,5 @@
-﻿using NETBase.Models;
+﻿using NETBase.DTOs;
+using NETBase.Models;
 
 namespace NETBase.Interfaces.IRepositories
 {
@@ -7,7 +8,7 @@ namespace NETBase.Interfaces.IRepositories
         Task<List<User>> GetUsers();
         Task<User> GetUserByCode(string code);
         Task<bool> CreateUser(User data);
-        Task<bool> UpdateUser(User data);
+        Task<bool> UpdateUser(UpdateUserDTO data);
         Task<bool> DeleteUser(string code);
         Task<User> GetUserByUsername(string username);
         Task<User> GetUserByEmail(string email);
