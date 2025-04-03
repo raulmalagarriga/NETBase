@@ -8,7 +8,7 @@ namespace NETBase.Interfaces.IServices
         Task<List<UserDTO>> GetUsers();
         Task<UserDTO> GetUserByCode(string code);
         Task<bool> CreateUser(CreateUserDTO data);
-        void UpdateUser(UpdateUserDTO data);
+        Task<bool> UpdateUser(UpdateUserDTO data);
         Task<bool> DeleteUser(string code);
     }
 }

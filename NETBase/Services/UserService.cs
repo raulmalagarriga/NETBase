@@ -101,11 +101,16 @@ namespace NETBase.Services
             }
         }
 
-        public void UpdateUser(UpdateUserDTO data)
+        public async Task<bool> UpdateUser(UpdateUserDTO data)
         {
             try
             {
-
+                bool userToUpdate = await _userRepository.UpdateUser(data);
+                if (userToUpdate == false)
+                {
+                    throw new Exception("User does not exists!");
+                }
+                return true;
             }
             catch (Exception ex)
             {

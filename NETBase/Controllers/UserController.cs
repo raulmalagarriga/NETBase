@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NETBase.DTOs;
 using NETBase.Interfaces.IServices;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -62,9 +61,18 @@ namespace NETBase.Controllers
         }
 
         // PUT api/<UserController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] UpdateUserDTO Data)
         {
+            try
+            {
+                bool response = await _userService.UpdateUser(Data);
+                return StatusCode(200, "User updated successfully!");
+            }
+            catch (Exception err)
+            {
+                return StatusCode(400, err.Message);
+            }
         }
 
         // DELETE api/<UserController>/5
