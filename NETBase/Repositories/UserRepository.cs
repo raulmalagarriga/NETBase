@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NETBase.Data;
+using NETBase.DTOs;
 using NETBase.Interfaces.IRepositories;
 using NETBase.Models;
 
@@ -39,11 +40,15 @@ namespace NETBase.Repositories
             return await dBContext.User.ToListAsync();
         }
 
-        public async Task<bool> UpdateUser(User data)
+        public async Task<bool> UpdateUser(UpdateUserDTO data)
         {
             User userToUpdate = await dBContext.User.FirstOrDefaultAsync(u => u.Code == data.Code);
             if (userToUpdate == null) return false;
-            userToUpdate = data;
+
+            if (data.Email != null) userToUpdate.Email = data.Email;
+            if (data.Username != null) userToUpdate.Username = data.Username;
+            if (data.Password != null) userToUpdate.Password = data.Password;
+
             await dBContext.SaveChangesAsync();
             return true;
         }
