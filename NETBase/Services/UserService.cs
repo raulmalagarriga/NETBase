@@ -67,7 +67,7 @@ namespace NETBase.Services
                 UserDTO ResultMapped = new()
                 {
                     Code = Result.Code,
-                    Username = Result.Password,
+                    Username = Result.Username,
                     Email = Result.Email,
                     Password = Result.Password,
                 };
